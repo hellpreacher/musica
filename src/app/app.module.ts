@@ -10,13 +10,17 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MusicProvider } from '../providers/music/music';
+import { MusicPlayerPage } from '../pages/music-player/music-player';
+
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Media } from '@ionic-native/media';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    MusicPlayerPage
   ],
   imports: [
     BrowserModule,
@@ -27,13 +31,14 @@ import { SocialSharing } from '@ionic-native/social-sharing';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    MusicPlayerPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MusicProvider, SocialSharing
+    MusicProvider, SocialSharing, Media
   ]
 })
 export class AppModule {}
