@@ -8,28 +8,34 @@ import { Media, MediaObject } from '@ionic-native/media';
 })
 export class MusicPlayerPage {
     public music
-    private mediaFile: MediaObject
+    private mediaFile: MediaObject = null;
     constructor(
         public navCtrl: NavController,
         private media: Media,
         public navParams: NavParams
     ) {
         this.music = this.navParams.get('music')
-        this.mediaFile = this.media.create(this.music.music_url)
     }
 
     ionViewDidLoad() {}
 
     stopMusic() {
-        this.mediaFile.stop()
+        if (this.mediaFile !== null) {
+            this.mediaFile.stop()
+            this.mediaFile.release();
+        }
     }
 
     playMusic() {
-        this.mediaFile.play()
+        if (this.mediaFile === null) {
+            this.mediaFile = this.media.create(this.music.music_url)
+            this.mediaFile.play()
+        }
     }
 
     pauseMusic() {
-        this.mediaFile.pause()
+        if (this.mediaFile !== null) {
+            this.mediaFile.pause()
+        }
     }
-
 }
