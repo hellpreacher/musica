@@ -17,18 +17,23 @@ export class MusicPlayerPage {
         this.music = this.navParams.get('music')
     }
 
-    ionViewDidLoad() {}
+    ionViewWillLeave() {
+        this.stopMusic()
+    }
 
     stopMusic() {
         if (this.mediaFile !== null) {
             this.mediaFile.stop()
             this.mediaFile.release();
+            this.mediaFile = null;
         }
     }
 
     playMusic() {
         if (this.mediaFile === null) {
             this.mediaFile = this.media.create(this.music.music_url)
+            this.mediaFile.play()
+        } else {
             this.mediaFile.play()
         }
     }
